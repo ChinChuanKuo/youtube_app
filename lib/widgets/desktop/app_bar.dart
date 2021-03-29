@@ -4,13 +4,8 @@ import 'package:youtube_app/data/data.dart';
 import 'package:youtube_app/widgets/widgets.dart';
 
 class DesktopAppBar extends StatelessWidget {
-  final String title;
-  final TextEditingController textEditingController;
-
   const DesktopAppBar({
     Key key,
-    @required this.title,
-    @required this.textEditingController,
   }) : super(key: key);
 
   @override
@@ -38,12 +33,13 @@ class DesktopAppBar extends StatelessWidget {
                 CircleButton(
                   icon: Icons.menu,
                   iconSize: 25.0,
+                  iconColor: Palette.defaultIconColor,
                   onPressed: () => print("menu"),
                 ),
                 SizedBox(width: 18.0),
                 Expanded(
                   child: Text(
-                    this.title,
+                    Palette.title,
                     style: TextStyle(
                       color: Palette.facebookBlue,
                       fontSize: 25.0,
@@ -59,7 +55,7 @@ class DesktopAppBar extends StatelessWidget {
             height: double.infinity,
             width: MediaQuery.of(context).size.width * 0.40,
             child: CustomSearchBar(
-              textEditingController: textEditingController,
+              textEditingController: Palette.textEditingController,
             ),
           ),
           Expanded(
@@ -69,16 +65,19 @@ class DesktopAppBar extends StatelessWidget {
                 CircleButton(
                   icon: Icons.video_call,
                   iconSize: 25.0,
+                  iconColor: Palette.defaultIconColor,
                   onPressed: () => print("Video Call"),
                 ),
                 CircleButton(
                   icon: Icons.apps,
                   iconSize: 25.0,
+                  iconColor: Palette.defaultIconColor,
                   onPressed: () => print("Apps"),
                 ),
                 CircleButton(
                   icon: Icons.notifications,
                   iconSize: 25.0,
+                  iconColor: Palette.defaultIconColor,
                   onPressed: () => print("Notification"),
                 ),
                 SizedBox(width: 15.0),

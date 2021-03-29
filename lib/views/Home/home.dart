@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_app/config/palette.dart';
+import 'package:youtube_app/data/data.dart';
 import 'package:youtube_app/widgets/widgets.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeView extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _HomeViewState createState() => _HomeViewState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeViewState extends State<HomeView> {
   final TrackingScrollController _trackingScrollController =
       TrackingScrollController();
 
   @override
   void dispose() {
     // TODO: implement dispose
+    Palette.textEditingController.dispose();
     _trackingScrollController.dispose();
     super.dispose();
   }
@@ -20,31 +23,56 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Responsive(
-      mobile: HomeScreenMobile(scrollController: _trackingScrollController),
-      tablet: HomeScreenDesktop(scrollController: _trackingScrollController),
-      desktop: HomeScreenDesktop(scrollController: _trackingScrollController),
+      mobile: MobileHomeView(
+        scrollController: _trackingScrollController,
+      ),
+      tablet: DesktopHomeView(
+        scrollController: _trackingScrollController,
+      ),
+      desktop: DesktopHomeView(
+        scrollController: _trackingScrollController,
+      ),
     );
   }
 }
 
-class HomeScreenMobile extends StatelessWidget {
+class MobileHomeView extends StatelessWidget {
   final TrackingScrollController scrollController;
 
-  const HomeScreenMobile({
+  const MobileHomeView({
     Key key,
     @required this.scrollController,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return CustomScrollView(
+      controller: scrollController,
+      slivers: [
+        MobileAppBar(
+          textEditingController: Palette.textEditingController,
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.only(bottom: 15.0),
+          sliver: SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final video = videos[index];
+                return VideoCard(video: video);
+              },
+              childCount: videos.length,
+            ),
+          ),
+        )
+      ],
+    );
   }
 }
 
-class HomeScreenDesktop extends StatelessWidget {
+class DesktopHomeView extends StatelessWidget {
   final TrackingScrollController scrollController;
 
-  const HomeScreenDesktop({
+  const DesktopHomeView({
     Key key,
     @required this.scrollController,
   }) : super(key: key);

@@ -4,12 +4,10 @@ import 'package:youtube_app/data/data.dart';
 import 'package:youtube_app/widgets/widgets.dart';
 
 class MobileAppBar extends StatefulWidget {
-  final String title;
   final TextEditingController textEditingController;
 
   const MobileAppBar({
     Key key,
-    @required this.title,
     @required this.textEditingController,
   }) : super(key: key);
 
@@ -35,81 +33,47 @@ class _MobileAppBarState extends State<MobileAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: isSearch
-          ? const EdgeInsets.symmetric(horizontal: 5.0)
-          : const EdgeInsets.symmetric(horizontal: 20.0),
-      height: 65.0,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            offset: Offset(0, 2),
-            blurRadius: 4.0,
-          ),
-        ],
+    return SliverAppBar(
+      backgroundColor: Colors.white,
+      title: Text(
+        Palette.title,
+        style: TextStyle(
+          color: Palette.facebookBlue,
+          fontSize: 28.0,
+          fontWeight: FontWeight.bold,
+          letterSpacing: -1.2,
+        ),
       ),
-      child: isSearch
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CircleButton(
-                  icon: Icons.arrow_back,
-                  iconSize: 25.0,
-                  onPressed: () => setState(() => isSearch = !isSearch),
-                ),
-                Expanded(
-                  child: CustomSearchBar(
-                    textEditingController: this.widget.textEditingController,
-                  ),
-                )
-              ],
-            )
-          : Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    this.widget.title,
-                    style: TextStyle(
-                      color: Palette.facebookBlue,
-                      fontSize: 32.0,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: -1.2,
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    CircleButton(
-                      icon: Icons.mic,
-                      iconSize: 25.0,
-                      onPressed: () => print("Mic"),
-                    ),
-                    CircleButton(
-                      icon: Icons.search,
-                      iconSize: 25.0,
-                      onPressed: () => setState(() => isSearch = !isSearch),
-                    ),
-                    CircleButton(
-                      icon: Icons.video_call,
-                      iconSize: 25.0,
-                      onPressed: () => print("Video Call"),
-                    ),
-                    CircleButton(
-                      icon: Icons.notifications,
-                      iconSize: 25.0,
-                      onPressed: () => print("Notification"),
-                    ),
-                    SizedBox(width: 15.0),
-                    UserCard(user: currentUser),
-                    SizedBox(width: 12.0),
-                  ],
-                ),
-              ],
-            ),
+      centerTitle: false,
+      floating: true,
+      actions: [
+        CircleButton(
+          icon: Icons.cast,
+          iconSize: 25.0,
+          iconColor: Palette.defaultIconColor,
+          onPressed: () => print("Cast"),
+        ),
+        CircleButton(
+          icon: Icons.notifications_outlined,
+          iconSize: 25.0,
+          iconColor: Palette.defaultIconColor,
+          onPressed: () => print("Notification"),
+        ),
+        CircleButton(
+          icon: Icons.search,
+          iconSize: 25.0,
+          iconColor: Palette.defaultIconColor,
+          onPressed: () => setState(() => isSearch = !isSearch),
+        ),
+        IconButton(
+          iconSize: 35.0,
+          hoverColor: Colors.transparent,
+          icon: CircleAvatar(
+            foregroundImage: NetworkImage(currentUser.profileImageUrl),
+          ),
+          onPressed: () {},
+        ),
+      ],
     );
   }
 }

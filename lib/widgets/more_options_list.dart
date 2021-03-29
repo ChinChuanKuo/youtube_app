@@ -3,13 +3,11 @@ import 'package:youtube_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class MoreOptionsList extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final bool isTablet = Responsive.isTablet(context);
     return Container(
       constraints: BoxConstraints(maxWidth: isTablet ? 80.0 : 280.0),
-      padding: const EdgeInsets.symmetric(vertical: 15.0),
       child: ListView.builder(
         itemCount: moreOption.length,
         itemBuilder: (BuildContext context, int index) {
@@ -62,7 +60,7 @@ class _TabletOption extends StatelessWidget {
       onTap: () => print(label),
       hoverColor: Colors.black12,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0),
+        padding: const EdgeInsets.symmetric(vertical: 15.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -104,7 +102,7 @@ class _DesktopOption extends StatelessWidget {
       onTap: () => print(label),
       hoverColor: Colors.black12,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 9.0),
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
         child: Row(
           children: [
             SizedBox(width: 22.0),

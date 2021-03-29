@@ -5,5 +5,6 @@ export 'circle_button.dart';
 export 'profile_avatar.dart';
 export 'user_card.dart';
 export 'custom_search_bar.dart';
-export 'custom_tab_bar.dart';
 export 'more_options_list.dart';
+export 'video_card.dart';
+export 'video_info.dart';

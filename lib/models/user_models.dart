@@ -1,13 +1,11 @@
 class User {
-  final int id;
-  final String name;
-  final String imageUrl;
-  final bool isActive;
+  final String username;
+  final String profileImageUrl;
+  final String subscribers;
 
-  User({
-    this.id,
-    this.name,
-    this.imageUrl,
-    this.isActive,
+  const User({
+    this.username,
+    this.profileImageUrl,
+    this.subscribers,
   });
 }

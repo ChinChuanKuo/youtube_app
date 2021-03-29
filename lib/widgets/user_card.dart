@@ -22,13 +22,13 @@ class UserCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 ProfileAvatar(
-                  imageUrl: user.imageUrl,
+                  imageUrl: user.profileImageUrl,
                   radius: 20.0,
                 ),
                 SizedBox(width: 12.0),
                 Flexible(
                   child: Text(
-                    user.name,
+                    user.username,
                     style: TextStyle(fontSize: 16.0),
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -36,7 +36,7 @@ class UserCard extends StatelessWidget {
               ],
             )
           : ProfileAvatar(
-              imageUrl: user.imageUrl,
+              imageUrl: user.profileImageUrl,
               radius: 20.0,
             ),
     );
