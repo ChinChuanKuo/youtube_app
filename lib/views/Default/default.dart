@@ -174,6 +174,7 @@ class _DefaultViewState extends State<DefaultView> {
               onTap: (i) => setState(() => _selectedIndex = i),
               selectedFontSize: 10.0,
               unselectedFontSize: 10.0,
+              selectedItemColor: Palette.selectedIconColor,
               items: const [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home_outlined),

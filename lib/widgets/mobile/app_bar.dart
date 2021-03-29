@@ -4,11 +4,8 @@ import 'package:youtube_app/data/data.dart';
 import 'package:youtube_app/widgets/widgets.dart';
 
 class MobileAppBar extends StatefulWidget {
-  final TextEditingController textEditingController;
-
   const MobileAppBar({
     Key key,
-    @required this.textEditingController,
   }) : super(key: key);
 
   @override
@@ -34,12 +31,13 @@ class _MobileAppBarState extends State<MobileAppBar> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      toolbarHeight: 65.0,
       backgroundColor: Colors.white,
       title: Text(
         Palette.title,
         style: TextStyle(
           color: Palette.facebookBlue,
-          fontSize: 28.0,
+          fontSize: 32.0,
           fontWeight: FontWeight.bold,
           letterSpacing: -1.2,
         ),
@@ -66,13 +64,14 @@ class _MobileAppBarState extends State<MobileAppBar> {
           onPressed: () => setState(() => isSearch = !isSearch),
         ),
         IconButton(
-          iconSize: 35.0,
+          iconSize: 40.0,
           hoverColor: Colors.transparent,
           icon: CircleAvatar(
             foregroundImage: NetworkImage(currentUser.profileImageUrl),
           ),
           onPressed: () {},
         ),
+        SizedBox(width: 12.0),
       ],
     );
   }

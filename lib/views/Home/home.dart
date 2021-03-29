@@ -49,9 +49,7 @@ class MobileHomeView extends StatelessWidget {
     return CustomScrollView(
       controller: scrollController,
       slivers: [
-        MobileAppBar(
-          textEditingController: Palette.textEditingController,
-        ),
+        MobileAppBar(),
         SliverPadding(
           padding: const EdgeInsets.only(bottom: 15.0),
           sliver: SliverList(
@@ -79,6 +77,7 @@ class DesktopHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
     return Row(
       children: [
         Flexible(
@@ -93,14 +92,6 @@ class DesktopHomeView extends StatelessWidget {
               ),
               child: MoreOptionsList(),
             ),
-          ),
-        ),
-        Spacer(),
-        Container(
-          width: 600.0,
-          child: CustomScrollView(
-            controller: scrollController,
-            slivers: [],
           ),
         ),
       ],
